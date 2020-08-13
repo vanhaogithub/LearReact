@@ -1,35 +1,23 @@
 import React from 'react';
 import '../../css/login.css'
+import Counter from '../base/Counter';
+import Button from '../base/Button';
+import Array from '../base/Array';
+import Inheritance from '../base/Inheritance';
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            age: 180,
-            counter: 0
+            choise: '',
+            ex1: false,
+            ex2: false,
+            ex3: false,
+            ex4: false,
+            ex5: false
         };
     }
-    incrementCounter() {
-        this.setState(
-            {
-                counter: this.state.counter + 1,
-                age: this.state.age + 1
-            }
-        )
-    }
-    componentDidMount() {
-        this.setState(
-            {
-                age: this.state.age + 1
-            }
-        )
-        this.timerID = setInterval(
-            () => this.incrementCounter(), 2000
-        )
-    }
-    componentWillUnmount() {
-        clearInterval(this.timerID)
-    }
+
     mySubmitHandler = (event) => {
         event.preventDefault();
         let age = this.state.age;
@@ -38,17 +26,72 @@ class Login extends React.Component {
         }
     }
     myChangeHandler = (event) => {
-        let nam = event.target.name;
-        let val = event.target.value;
-        this.setState({ [nam]: val });
+        this.setState({ [event.target.name]: event.target.value });
+
+    }
+    handlerChoise = () => {
+        switch (this.state.choise) {
+            case '1':
+                this.setState({
+                    ex1: true,
+                    ex2: false,
+                    ex3: false,
+                    ex4: false,
+                    ex5: false
+                });
+                break;
+            case '2':
+                this.setState({
+                    ex1: false,
+                    ex2: true,
+                    ex3: false,
+                    ex4: false,
+                    ex5: false
+                });
+                break;
+            case '3':
+                this.setState({
+                    ex1: false,
+                    ex2: false,
+                    ex3: true,
+                    ex4: false,
+                    ex5: false
+                });
+                break;
+            case '4':
+                this.setState({
+                    ex1: false,
+                    ex2: false,
+                    ex3: false,
+                    ex4: true,
+                    ex5: false
+                });
+                break;
+            case '5':
+                this.setState({
+                    ex1: false,
+                    ex2: false,
+                    ex3: false,
+                    ex4: false,
+                    ex5: true
+                });
+                break;
+            default:
+                this.setState({
+                    ex1: false,
+                    ex2: false,
+                    ex3: false,
+                    ex4: false,
+                    ex5: false
+                });
+        }
+
     }
     render() {
         return (
             <div className='loginForm'>
-                <h2>Counter: {this.state.counter}</h2>
-                <h2>Age: {this.state.age}</h2>
                 <div className='loginContent'>
-                    <form onSubmit={this.mySubmitHandler}>
+                    {this.state.ex1 && <form onSubmit={this.mySubmitHandler}>
                         <h1>{this.props.formName}</h1>
                         <p>UserName:</p>
                         <input
@@ -65,7 +108,19 @@ class Login extends React.Component {
                         <br />
                         <br />
                         <input type='submit' value='Login' />
-                    </form>
+                    </form>}
+                    {this.state.ex2 && <Counter />}
+                    {this.state.ex3 && <Button name="Buton"/>}
+                    {this.state.ex4 && <Array />}
+                    {this.state.ex5 && <Inheritance btn1 ={<Button name="Buton 01"/>} btn2 ={<Button name="Buton 02"/>}><p>Children infor</p></Inheritance>}
+                    <div>
+                        <input
+                            type='text'
+                            name='choise'
+                            onChange={this.myChangeHandler}
+                        />
+                        <input type='button' value='Next' onClick={this.handlerChoise} />
+                    </div>
                 </div>
             </div>
         );
