@@ -5,8 +5,13 @@ class Button extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            isOn: true
+            isOn: true,
+            buttonName: ''
         }
+    }
+    // gan gia tri cho state tu props
+    static getDerivedStateFromProps(props, state){
+        return {buttonName: props.name}
     }
     handleClick =() => {
         this.setState({
@@ -16,7 +21,7 @@ class Button extends React.Component{
     render(){
         return(
             <button className='ToggleButton' onClick={this.handleClick}>
-                {this.props.name} {this.state.isOn ? "ON" : "OFF"}
+                {this.state.buttonName} {this.state.isOn ? "ON" : "OFF"}
             </button>
         );
     }
