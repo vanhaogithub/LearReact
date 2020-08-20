@@ -5,6 +5,7 @@ import Button from '../base/Button';
 import Array from '../base/Array';
 import Inheritance from '../base/Inheritance';
 import Content from '../main';
+import Router from '../base/Router';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -134,7 +135,7 @@ class Login extends React.Component {
                     </form>}
                     {this.state.ex2 && <Counter />}
                     {this.state.ex3 && <Button name="Buton" />}
-                    {this.state.ex4 && <Array />}
+                    {this.state.ex4 && <Router />}
                     {this.state.ex5 && <Inheritance btn1={<Button name="Buton 01" />} btn2={<Button name="Buton 02" />}><p>Children infor</p></Inheritance>}
                     {this.state.ex6 && <Content />}
                     <div>
