@@ -12,6 +12,7 @@ class Array extends React.Component {
         );
         return (
             <ul>
+                <h3>{`Path: ${this.props.location.pathname}`}</h3>
                 {listItem}
             </ul>
         );
